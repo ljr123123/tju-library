@@ -36,13 +36,15 @@ function logOut(){
 .mainContent{
     height:100vh;
     width:100vw;
-    display: flex;
+    
 }
 .side-bar{
     height:100vh;
-    width:20vw;
+    width:15vw;
     background: #00000010;
-    position: relative;
+    position: fixed;
+    top:0;
+    left:0;
 }
 .log-out{
     position: absolute;

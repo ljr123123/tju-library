@@ -11,16 +11,18 @@
             </div>
         </div>
         <div class="right-box">
-            <p class="text-h1 page-title">某信息审核系统</p>
+            <p class="text-h1 page-title">图书馆信息审核系统</p>
             <div class="login-box">
                 <p class="text-h1 welcome">欢迎回来</p>
                 <label class="input-box">
                     <input type="text" placeholder="请输入用户名" v-model="username" class="input"/>
+                    <div class="bottom-line"></div>
                 </label>
                 <label class="input-box">
                     <input type="passoword" placeholder="请输入密码" v-model="password" class="input"/>
+                    <div class="bottom-line"></div>
                 </label>
-                <button class="big-button login-button" @click="login()">登陆</button>
+                <button :class="loginButtomClass" @click="login()">登陆</button>
                 <div class="bottom-box">
                     <p class="text-href">注册账号</p>
                     <p class="text-href">忘记密码</p>
@@ -34,12 +36,19 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref } from "vue"
+import { ref, computed } from "vue"
 import Cookies from "js-cookie";
 const router = useRouter();
 const username = ref("");
 const password = ref("");
-const login_type = ref("user"); 
+const login_type = ref("user");
+
+const loginButtomClass = computed(() => {
+    return [
+        "big-button",
+        (username.value != "" && password.value != "")? 'login-button-yes' : "login-button-no" 
+    ]
+})
 
 async function login(){
     if(login_type.value == "user"){
@@ -110,7 +119,7 @@ function changeUser(){
     flex-direction: column;
     border-radius: 10px;
     position: relative;
-    background: rgba(135, 207, 235, 0.3);
+    background: rgba(135, 207, 235, 0.1);
 }
 .bottom-box{
     position: absolute;
@@ -124,22 +133,45 @@ function changeUser(){
 }
 .input-box{
     display: flex;
+    flex-direction: column;
     width:80%;
     height:40px;
     margin:5%;
 }
 .input{
     width:100%;
+    height:100%;
     font-size: 16px;
+    background: transparent;
+    border:none;
+    outline:none;
 }
-.login-button{
+.login-button-no{
+    transition: all .5s;
     margin:5%;
+    background: rgba(135, 207, 235, 0.3);
+    color: #FFFFFF;
+    border:none;
 }
+.login-button-yes{
+    transition: all .5s;
+    margin:5%;
+    background: rgba(135, 207, 235, 0.7);
+    color: #FFFFFF;
+    border:none;
+    box-shadow: 0 0 5px #00000040;
+}
+
 .page-title{
     position: absolute;
     width:40%;
     left:30%;
     top:10%;
     text-align: center;
+}
+.bottom-line{
+    height:0.1vh;
+    width:100%;
+    background: black;
 }
 </style>

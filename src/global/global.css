@@ -1,12 +1,14 @@
-body, p, ul, li{
+p, ul, li{
     margin:0;
     padding:0;
     list-style: none;
 }
 
-#app{
+#app, body, html{
     height: 100vh;
     width: 100vw;
+    margin:0;
+    overflow-x: hidden;
 }
 
 .text-h1{
@@ -33,10 +35,16 @@ body, p, ul, li{
 }
 
 .text-href{
-    color:rgba(0, 0, 255, 0.7);
+    transition: all .5s;
+    color:rgba(0, 0, 255, 0.5);
     font-size:15px;
     width:80px;
     text-align: center;
+    cursor:pointer;
+}
+.text-href:hover{
+    color:rgb(0, 0, 255, 0.7);
+    transition: all .5s;
 }
 
 :root{
